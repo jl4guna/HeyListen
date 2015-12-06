@@ -9,7 +9,7 @@
 						{
 							if(username == usuario.username && password == usuario.password)
 							{
-                				localStorage["usuario"] = usuario.UsuarioID;
+                localStorage["usuario"] = usuario.UsuarioID;
 								window.location.href = "lista.html";
 							}else{
 								$('#errorContraseña').empty();
@@ -31,4 +31,9 @@ $('#entrar').click(function(event) {
 		alertify.error("Rellena todos los campos");
   }
 
+});
+$(document).ready(function() {
+	if (localStorage["usuario"]) {
+		window.location.href = "lista.html";
+	}
 });
