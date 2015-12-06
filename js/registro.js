@@ -10,7 +10,7 @@ function Registrar() {
 							window.location.href = "index.html";
 					},
 					400: function () {
-							console.log('error');
+							alertify.error("Ocurrio un error");
 					}
 			}
 	});
@@ -38,7 +38,7 @@ $('#btnRegistrar').click(function(event) {
 	if ($('#username').val() != '' && $('#email').val() != '' && $('#password').val() != '') {
 			Registrar();
 	}else {
-		alert('rellena todos los campos');
+		alertify.error("Llena todos los campos");
 	}
 
 });

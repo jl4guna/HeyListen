@@ -6,9 +6,7 @@ function Actualizar() {
 	formulario.username = $('#username').val();
 	formulario.password = $('#password').val();
 	formulario.email = $('#email').val();
-	console.log(formulario);
 	var data = JSON.stringify(formulario);
-	console.log(data);
 	$.ajax({
 			url: url,
 			type: 'PUT',
@@ -16,10 +14,10 @@ function Actualizar() {
 			contentType: "application/json;chartset=utf-8",
 			statusCode: {
 					204: function () {
-							window.location.href = "canciones.html";
+							alertify.success("Informacion Actualizada");
 					},
 					400: function () {
-							console.log('error');
+							alertify.error("Ocurrio un error");
 					}
 			}
 	});
@@ -62,7 +60,7 @@ $('#btnActualizar').click(function(event) {
 	if ($('#username').val() != '' && $('#email').val() != '' && $('#password').val() != '') {
 			Actualizar();
 	}else {
-		console.log('rellena todos los campos');
+		alertify.error("Rellena todos los campos");
 	}
 
 });

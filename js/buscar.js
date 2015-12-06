@@ -9,7 +9,7 @@ function  BuscarSoundCloud(texto) {
 				var canciones = "";
 				$.each(tracks, function(i , track)
 				{
-						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/scico.png"/><a href="'+ track.permalink_url +'"><img src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" class="guardar btnGuardar">Guardar</button>';
+						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSC').html(canciones);
       },
@@ -60,7 +60,7 @@ function Guardar(id,titulo) {
 		url : id,
 		UsuarioID : usuario
 		}
-console.log(data);
+
 	$.ajax({
 			url: url,
 			type: 'POST',
@@ -68,10 +68,10 @@ console.log(data);
 			contentType: "application/json;chartset=utf-8",
 			statusCode: {
 					201: function () {
-							alert('Cancion añadida');
+							alertify.success("Cancion guardada");
 					},
 					400: function () {
-							alert('Error');
+							alertify.error("No se pudo guardar");
 					}
 			}
 	});

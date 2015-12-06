@@ -28,7 +28,7 @@ $('#entrar').click(function(event) {
   if (username != '' && password != '') {
     Entrar(username,password);
   }else {
-    alert('no rellenaste todos los campos');
+		alertify.error("Rellena todos los campos");
   }
 
 });

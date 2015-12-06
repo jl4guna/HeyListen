@@ -1,6 +1,6 @@
 $('#logout').on('click', function(event) {
   event.preventDefault();
-  console.log('logout');
+  alertify.success("Hasta luego :)");
   localStorage.clear();
   window.location.href = "index.html";
 });
