@@ -1,0 +1,68 @@
+header{
+    background: #22282e;
+    height:60px;
+    position: relative;
+    width: 100%;
+}
+ 
+/* El logo sera flotado a la izquierda */
+#logo{
+    background: url(logo.png) no-repeat 0 0;
+    display: block;
+    float: left;
+    margin: 6px 10px 0;
+    width: 82px;
+    height: 46px;
+    text-indent: -9999px
+}
+ 
+/* Nuestro nav con id #menu lo flotaremos a la derecha*/
+#menu{ float: right;}
+ 
+    /* Quitamos estilos por defecto de el tag UL */
+    #menu ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+    }
+ 
+        /* Centramos y ponemos los textos en mayuscula */
+        #menu li{
+            display: block;
+            float: left;
+            text-transform: uppercase;
+            text-align: center;
+        }
+ 
+            /* Damos estilo a nuestros enlaces */
+            #menu li a{
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                height: 60px;
+                line-height: 60px;
+                padding: 0 26px;
+            }
+                #menu li a:hover{
+                    background: #151a1e;
+                    color: #ffc700;
+                }
+ 
+/* Estilos #nav-mobile y lo ocultamos */
+#nav-mobile{
+    display: none;
+    background: url(nav.png) no-repeat center center;
+    float: right;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top:0;
+    opacity: .6;
+}
+ 
+    /* Agregaremos esta clase a #nav-mobile, cuando el menu mobile haya sido desplegado */
+    #nav-mobile.nav-active{
+        opacity: 1;
+    }

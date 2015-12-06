@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Perfil</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+
+		<header style="position: relative; z-index: 5;">
+			<nav id="menu">
+				<a class="nav-mobile" id="nav-mobile" href="#"></a>
+				<img src="images/avatar.png" alt="">
+				<ul>
+					 <li>
+						<img src="images/buscar.png" alt="">
+						<a href="lista.html">Buscar</a>
+					</li>
+					 <li>
+					<img src="images/logout.png" alt="">
+						<a href="canciones.html">Tus Canciones</a>
+					</li>
+
+					<li>
+				 <img src="images/perfil.png" alt="">
+					 <a href="perfil.html">Perfil</a>
+				 </li>
+					<li>
+						<img src="images/logout.png" alt="">
+						  <a href="" id="logout">Logout</a>
+				</ul>
+			</nav>
+		</header>
+
+		<h1>Perfil</h1>
+		<form action="post" id="formulario">
+			<div id="contenedor">
+			<label for="" class="secondary-text-color"></label><br>
+			<input type="text" placeholder="Usuario" class="txtbox" name="username" id="username" required><br>
+			<label for="" class="secondary-text-color"></label><br>
+			<input type="email" placeholder="Email"  class="txtbox" name="email" id="email" required><br>
+			<label for="" class="secondary-text-color"></label><br>
+			<input type="password" placeholder="Contraseña" class="txtbox" name="password" id="password" required><br>
+			<input type="submit" value="Guardar" class="dark-primary-color btnRegistro" id="btnActualizar">
+			</div>
+		</form>
+
+	</div>
+</body>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="js/usuario.js"></script>
+  <script src="js/desplegarMenu.js"></script>
+	<script src="js/logout.js"></script>
+
+</html>

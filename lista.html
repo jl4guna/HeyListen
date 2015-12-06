@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buscar</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <header style="position: relative; z-index: 5;">
+        <nav id="menu">
+          <a class="nav-mobile" id="nav-mobile" href="#"></a>
+          <img src="images/avatar.png" alt="">
+          <ul>
+             <li>
+              <img src="images/buscar.png" alt="">
+              <a href="lista.html">Buscar</a>
+            </li>
+             <li>
+            <img src="images/logout.png" alt="">
+              <a href="canciones.html">Tus Canciones</a>
+            </li>
+
+            <li>
+           <img src="images/perfil.png" alt="">
+             <a href="perfil.html">Perfil</a>
+           </li>
+            <li>
+              <img src="images/logout.png" alt="">
+              <a href="" id="logout">Logout</a>
+          </ul>
+        </nav>
+      </header>
+
+        <section id="tracklist">
+          <h1 id="busca">Busca tus canciones favoritas</h1>
+          <input placeholder="Buscar" type="text" name="buscar" id="busqueda" />
+          <div id="contenedorListas">
+          <ul id="listaCancionesSC">
+          </ul>
+
+          <ul id="listaCancionesYT">
+          </ul>
+
+          <ul id="listaCancionesSP">
+
+          </ul>
+          </div>
+        </section>
+
+      </div>
+
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/buscar.js"></script>
+  <script src="js/desplegarMenu.js"></script>
+  <script src="js/logout.js"></script>
+  </body>
+</html>
