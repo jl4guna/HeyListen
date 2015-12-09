@@ -41,8 +41,24 @@ $('#btnRegistrar').click(function(event) {
 		}else {
 			alertify.error("Las contraseñas no coinciden");
 		}
-	}else {
-		alertify.error("Llena todos los campos");
 	}
+
+});
+
+$(document).ready(function () {
+    var emailreg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+    $("#btnRegistrar").click(function (){
+        $(".error").remove();
+        if( $("#username").val() == "" ){
+            $("#username").focus().after(alertify.error("Ingresa un nombre de usuario"));
+            return false;
+        }else if( $("#email").val() == "" || !emailreg.test($("#email").val()) ){
+            $("#email").focus().after(alertify.error("Ingresa un correo valido"));
+            return false;
+        }else if( $("#password").val() == ""){
+            $("#password").focus().after(alertify.error("Ingresa una contraseña"));
+            return false;
+        }
+    });
 
 });
