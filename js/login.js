@@ -10,7 +10,7 @@
 							if(username == usuario.username && password == usuario.password)
 							{
                 localStorage["usuario"] = usuario.UsuarioID;
-								window.location.href = "lista.html";
+								window.location.href = "canciones.html";
 							}else{
 								$('#errorContraseña').empty();
 								$('#errorContraseña').append('<li class="rojo">Usuario y/o Contraseña incorrecta</li>');

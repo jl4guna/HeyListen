@@ -36,7 +36,11 @@ $.fn.serializeObject = function()
 $('#btnRegistrar').click(function(event) {
 	event.preventDefault();
 	if ($('#username').val() != '' && $('#email').val() != '' && $('#password').val() != '') {
+		if ($('#password').val() === $('#password2').val()) {
 			Registrar();
+		}else {
+			alertify.error("Las contraseñas no coinciden");
+		}
 	}else {
 		alertify.error("Llena todos los campos");
 	}
