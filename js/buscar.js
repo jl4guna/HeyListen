@@ -9,7 +9,7 @@ function  BuscarSoundCloud(texto) {
 				var canciones = "";
 				$.each(tracks, function(i , track)
 				{
-						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" class="guardar btnGuardar">Guardar</button>';
+						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img onerror="imgRespaldo('+track.artwork_url+')" src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSC').html(canciones);
       },
@@ -27,7 +27,7 @@ function  BuscarYoutube(texto) {
 				var canciones = "";
 				$.each(tracks.items, function(i , track)
 				{
-						canciones +='<li class="estiloListas stroke"><img class="icon" src="images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" class="guardar btnGuardar">Guardar</button>';
+						canciones +='<li class="estiloListas stroke"><img class="icon" src="images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img onerror="imgRespaldo('+track.snippet.thumbnails.medium.url+')" src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesYT').html(canciones);
       },
@@ -75,6 +75,10 @@ function Guardar(id,titulo) {
 					}
 			}
 	});
+}
+
+function imgRespaldo(url){
+	$('img[src='+url+']').attr('src', './images/ftyt.png');
 }
 
 $('ul').on('click', 'button', function(event) {
