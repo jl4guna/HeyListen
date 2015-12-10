@@ -1,3 +1,4 @@
+"use strict";
 function  BuscarSoundCloud(texto) {
 	var url = 'http://api.soundcloud.com/tracks.json?client_id=a6c32f43a9c86c747d79943a65c389e5&q='+texto+'&limit=10';
 	$.ajax({
@@ -9,7 +10,7 @@ function  BuscarSoundCloud(texto) {
 				var canciones = "";
 				$.each(tracks, function(i , track)
 				{
-						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img onerror="imgRespaldo('+track.artwork_url+')" src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" class="guardar btnGuardar">Guardar</button>';
+						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img onerror="imgRespaldo('+track.artwork_url+')" src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" servicio="sc" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSC').html(canciones);
       },
@@ -27,7 +28,7 @@ function  BuscarYoutube(texto) {
 				var canciones = "";
 				$.each(tracks.items, function(i , track)
 				{
-						canciones +='<li class="estiloListas stroke"><img class="icon" src="images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img onerror="imgRespaldo('+track.snippet.thumbnails.medium.url+')" src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" class="guardar btnGuardar">Guardar</button>';
+						canciones +='<li class="estiloListas stroke"><img class="icon" src="images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img onerror="imgRespaldo('+track.snippet.thumbnails.medium.url+')" src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" servicio="yt" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesYT').html(canciones);
       },
@@ -45,22 +46,22 @@ function  BuscarSpotify(texto) {
 				var canciones = "";
 				$.each(tracks.tracks.items, function(i , track)
 				{
-					 canciones +=	'<li class="estiloListas stroke"><img class="icon" src="images/spotifyLogo.png"/><a href="'+ track.external_urls.spotify+'">'+ track.name +'</a></li><button cancion="'+ track.name +'" url="'+ track.external_urls.spotify +'" class="guardar btnGuardar">Guardar</button>';
+					 canciones +=	'<li class="estiloListas stroke"><img class="icon" src="images/spotifyLogo.png"/><a href="'+ track.external_urls.spotify+'"><img src="'+track.album.images[1].url+'" />'+ track.name +'</a></li><button cancion="'+ track.name +'" url="'+ track.external_urls.spotify +'" servicio="sp" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSP').html(canciones);
       },
 	});
 }
 
-function Guardar(id,titulo) {
+function Guardar(id,titulo,powerBy) {
 	var url = 'http://heylisten20151203051142.azurewebsites.net/api/cancions';
 	var usuario = localStorage["usuario"];
 	var data = {
 		nombre : titulo,
 		url : id,
-		UsuarioID : usuario
+		UsuarioID : usuario,
+		servicio : powerBy
 		}
-
 	$.ajax({
 			url: url,
 			type: 'POST',
@@ -84,8 +85,9 @@ function imgRespaldo(url){
 $('ul').on('click', 'button', function(event) {
 	event.preventDefault();
 	var id = $(this).attr('url');
+	var powerBy = $(this).attr('servicio');
 	var titulo = $(this).attr('cancion').substring(0,50);
-	Guardar(id,titulo);
+	Guardar(id,titulo,powerBy);
 });
 
 $(document).on('keyup', '#busqueda', function() {

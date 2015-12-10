@@ -1,3 +1,4 @@
+"use strict";
 function Actualizar() {
 	var id = localStorage["usuario"];
 	var url = 'http://heylisten20151203051142.azurewebsites.net/api/usuarios/'+id;
