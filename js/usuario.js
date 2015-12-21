@@ -1,60 +1,47 @@
 "use strict";
 function Actualizar() {
-	var id = localStorage["usuario"];
-	var url = 'http://heylisten20151203051142.azurewebsites.net/api/usuarios/'+id;
+	var id = localStorage["a8d7f0a88sdfa7s0d8"];
+	var url = 'http://heylistenapi.azurewebsites.net/usuarios/' + id;
 	var formulario = {};
-	formulario.UsuarioID = id;
-	formulario.username = $('#username').val();
-	formulario.password = $('#password').val();
-	formulario.email = $('#email').val();
+    formulario.usuarios = {};
+	formulario.usuarios.id = id;
+	formulario.usuarios.nombre = $('#username').val();
+	formulario.usuarios.contrasena = $('#password').val();
+	formulario.usuarios.correo = $('#email').val();
 	var data = JSON.stringify(formulario);
+    console.log(data);
 	$.ajax({
 		url: url,
 		type: 'PUT',
 		data: data,
 		contentType: "application/json;chartset=utf-8",
 		statusCode: {
-			204: function () {
-				alertify.success("Informacion Actualizada");
+			success: function () {
+
 			},
-			400: function () {
+			error: function () {
 				alertify.error("Ocurrio un error");
 			}
 		}
 	});
+	alertify.success("Informacion Actualizada");
 }
 
 function  Cargar() {
-	var id = localStorage["usuario"];
-	var url = 'http://heylisten20151203051142.azurewebsites.net/api/usuarios/'+id;
+	var nombre = localStorage["465fg65f7g6d8s8s6a8s"];
+	var url = 'http://heylistenapi.azurewebsites.net/usuarios/login/' + nombre;
 	$.ajax({
 		url: url,
 		type: 'GET',
 		contentType: "application/json;chartset=utf-8",
-		success: function(usuario){
-			$('#username').val(usuario.username);
-			$('#password').val(usuario.password);
-			$('#email').val(usuario.email);
+		success: function(usuarios){
+            var usuario = usuarios.usuarios[0];
+			$('#username').val(usuario.nombre);
+			$('#password').val(usuario.contrasena);
+			$('#email').val(usuario.correo);
 		},
 	});
 }
-
-$.fn.serializeObject = function()
-{
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-		if (o[this.name] !== undefined) {
-			if (!o[this.name].push) {
-				o[this.name] = [o[this.name]];
-			}
-			o[this.name].push(this.value || '');
-		} else {
-			o[this.name] = this.value || '';
-		}
-	});
-	return o;
-};
 
 
 var emailreg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;

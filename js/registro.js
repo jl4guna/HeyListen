@@ -1,10 +1,11 @@
 "use strict";
 function Registrar() {
-	var url = 'http://heylisten20151203051142.azurewebsites.net/api/usuarios';
+	var url = 'http://heylistenapi.azurewebsites.net/usuarios';
 	var formulario = {};
-	formulario.username = $('#username').val();
-	formulario.password = $('#password').val();
-	formulario.email = $('#email').val();
+    formulario.usuarios = {};
+	formulario.usuarios.nombre = $('#username').val();
+	formulario.usuarios.contrasena = $('#password').val();
+	formulario.usuarios.correo = $('#email').val();
 	var data = JSON.stringify(formulario);
 	$.ajax({
 		url: url,
@@ -21,23 +22,6 @@ function Registrar() {
 		}
 	});
 }
-
-$.fn.serializeObject = function()
-{
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-		if (o[this.name] !== undefined) {
-			if (!o[this.name].push) {
-				o[this.name] = [o[this.name]];
-			}
-			o[this.name].push(this.value || '');
-		} else {
-			o[this.name] = this.value || '';
-		}
-	});
-	return o;
-};
 
 
 //Expresion regular para comprobar el email

@@ -3,7 +3,7 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
 
 .dark-primary-color    {
-	background: #C620A1 ;
+	background: green ;
 	border-radius: 5px;
 	border:none;
 	color: #FFF;
@@ -22,7 +22,7 @@ body{
 	MENU
 */
 header{
-    background: #C620A1;
+    background: green;
     height:35px;
     position: relative;
     width: 100%;
@@ -30,14 +30,14 @@ header{
 
  h1{
  	text-align: center;
- 	color: #C620A1;
+ 	color: green;
  }
 /* El logo sera flotado a la izquierda */
 
 
 /* Nuestro nav con id #menu lo flotaremos a la derecha*/
 #menu{ float: right;
-	background-color: #C620A1;
+	background-color: green;
 }
 
     /* Quitamos estilos por defecto de el tag UL */
@@ -80,7 +80,7 @@ padding: 0 26px;
     left: 0;
     top:0;
     opacity: .6;
-    background-color: #C620A1;
+    background-color: green;
 
 }
 
@@ -184,7 +184,7 @@ input[placeholder]{
 }
 
 #busca{
-	color: #C620A1;
+	color: green;
 }
 
 .estiloListas{
@@ -252,7 +252,7 @@ input[placeholder]{
 .btnGuardar{
 	width: 20%;
 	height: 10%;
-	background: #C620A1 ;
+	background: green ;
 	border-radius: 5px;
 	border:none;
 	color: #FFF;
@@ -279,7 +279,7 @@ text-shadow: -1px -1px 1px #FFF, 1px 1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1
 	}
 
 	button{
-		background: #7B1FA2;
+		background: #42a5f5;
 		border-radius: 15px;
 		border:none;
 		color: #FFF;
@@ -422,7 +422,7 @@ text-shadow: -1px -1px 1px #FFF, 1px 1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1
 		height: 100%;
 		margin: auto;
 	}
-	
+
 	#menu{
 		height: 65px;
     	width: 100%;
@@ -430,7 +430,7 @@ text-shadow: -1px -1px 1px #FFF, 1px 1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1
 	#menu img{
 		display: none;
 	}
-	
+
 	#menu li {
 		width: 25%;
 	}

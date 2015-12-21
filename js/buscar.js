@@ -10,7 +10,7 @@ function  BuscarSoundCloud(texto) {
 				var canciones = "";
 				$.each(tracks, function(i , track)
 				{
-						canciones += '<li class="estiloListas stroke"><img class="icon" src="images/sc.ico"/><a href="'+ track.permalink_url +'"><img onerror="imgRespaldo('+track.artwork_url+')" src="'+ track.artwork_url +'" />'+track.title+'</a></li><button cancion="'+ track.title +'" url="'+ track.permalink_url +'" servicio="sc" class="guardar btnGuardar">Guardar</button>';
+						canciones += '<li class="estiloListas stroke"><img class="icon" src="http://lpdelche.com/hl/images/orange.png"/><a href="'+ track.permalink_url +'"><img onerror="imgRespaldo('+track.artwork_url+')" src="'+ track.artwork_url +'" />'+track.title+'</a></li><button thumbnail="'+ track.artwork_url +'" cancion="'+ track.title +'" url="'+ track.permalink_url +'" servicio="sc" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSC').html(canciones);
       },
@@ -28,7 +28,7 @@ function  BuscarYoutube(texto) {
 				var canciones = "";
 				$.each(tracks.items, function(i , track)
 				{
-						canciones +='<li class="estiloListas stroke"><img class="icon" src="images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img onerror="imgRespaldo('+track.snippet.thumbnails.medium.url+')" src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" servicio="yt" class="guardar btnGuardar">Guardar</button>';
+						canciones +='<li class="estiloListas stroke"><img class="icon" src="http://lpdelche.com/hl/images/ftyt.png"/><a href="https://www.youtube.com/watch?v='+ track.id.videoId +'"><img onerror="imgRespaldo('+track.snippet.thumbnails.medium.url+')" src="'+track.snippet.thumbnails.medium.url+'" />'+track.snippet.title+'</a></li><button thumbnail="'+ track.snippet.thumbnails.medium.url +'" cancion="'+ track.snippet.title +'" url="https://www.youtube.com/watch?v='+ track.id.videoId +'" servicio="yt" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesYT').html(canciones);
       },
@@ -46,21 +46,22 @@ function  BuscarSpotify(texto) {
 				var canciones = "";
 				$.each(tracks.tracks.items, function(i , track)
 				{
-					 canciones +=	'<li class="estiloListas stroke"><img class="icon" src="images/spotifyLogo.png"/><a href="'+ track.external_urls.spotify+'"><img src="'+track.album.images[1].url+'" />'+ track.name +'</a></li><button cancion="'+ track.name +'" url="'+ track.external_urls.spotify +'" servicio="sp" class="guardar btnGuardar">Guardar</button>';
+					 canciones +=	'<li class="estiloListas stroke"><img class="icon" src="http://lpdelche.com/hl/images/spotifyLogo.png"/><a href="'+ track.external_urls.spotify+'"><img src="'+track.album.images[1].url+'" />'+ track.name +'</a></li><button thumbnail="'+ track.album.images[1].url +'" cancion="'+ track.name +'" url="'+ track.external_urls.spotify +'" servicio="sp" class="guardar btnGuardar">Guardar</button>';
 				});
 				$('#listaCancionesSP').html(canciones);
       },
 	});
 }
 
-function Guardar(id,titulo,powerBy) {
-	var url = 'http://heylisten20151203051142.azurewebsites.net/api/cancions';
-	var usuario = localStorage["usuario"];
+function Guardar(id,titulo,powerBy, imagenSrc) {
+	var url = 'http://heylistenapi.azurewebsites.net/canciones';
+	var usuario = localStorage["a8d7f0a88sdfa7s0d8"];
 	var data = {
 		nombre : titulo,
 		url : id,
-		UsuarioID : usuario,
-		servicio : powerBy
+		idUsuario : usuario,
+		servicio : powerBy,
+        imagen : imagenSrc
 		}
 	$.ajax({
 			url: url,
@@ -68,18 +69,19 @@ function Guardar(id,titulo,powerBy) {
 			data: JSON.stringify(data),
 			contentType: "application/json;chartset=utf-8",
 			statusCode: {
-					201: function () {
-							alertify.success("Cancion guardada");
+					success: function () {
+
 					},
-					400: function () {
+					error: function () {
 							alertify.error("No se pudo guardar");
 					}
 			}
 	});
+    alertify.success("Cancion guardada");
 }
 
 function imgRespaldo(url){
-	$('img[src='+url+']').attr('src', './images/ftyt.png');
+	$('img[src='+url+']').attr('src', 'http://lpdelche.com/hl/images/ftyt.png');
 }
 
 $('ul').on('click', 'button', function(event) {
@@ -87,7 +89,8 @@ $('ul').on('click', 'button', function(event) {
 	var id = $(this).attr('url');
 	var powerBy = $(this).attr('servicio');
 	var titulo = $(this).attr('cancion').substring(0,50);
-	Guardar(id,titulo,powerBy);
+    var imagenSrc = $(this).attr('thumbnail');
+	Guardar(id,titulo,powerBy, imagenSrc);
 });
 
 $(document).on('keyup', '#busqueda', function() {

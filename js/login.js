@@ -1,22 +1,22 @@
 "use strict";
 function Entrar(username,password){
-	var url = 'http://heylisten20151203051142.azurewebsites.net/api/usuarios';
+	var url = 'http://heylistenapi.azurewebsites.net/usuarios/login/' + username;
 	$.ajax({
 		url: url,
 		type: 'GET',
 		contentType: "application/json; charset=utf-8",
 		success: function(usuarios){
-			$.each(usuarios, function(i , usuario)
-			{
-				if(username == usuario.username && password == usuario.password)
+
+				var usuario = usuarios.usuarios[0];
+				if(username === usuario.nombre && password === usuario.contrasena)
 				{
-					localStorage["usuario"] = usuario.UsuarioID;
+					localStorage["a8d7f0a88sdfa7s0d8"] = usuario.id;
+                    localStorage["465fg65f7g6d8s8s6a8s"] = usuario.nombre;
 					window.location.href = "canciones.html";
 				}else{
 					$('#errorContraseña').empty();
 					$('#errorContraseña').append('<li class="rojo">Usuario y/o Contraseña incorrecta</li>');
 				}
-			});
 		}
 	});
 
@@ -34,7 +34,7 @@ $('#entrar').click(function(event) {
 
 });
 $(document).ready(function() {
-	if (localStorage["usuario"]) {
+	if (localStorage["a8d7f0a88sdfa7s0d8"]) {
 		window.location.href = "lista.html";
 	}
 });
